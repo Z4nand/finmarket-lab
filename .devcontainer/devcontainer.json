@@ -1,0 +1,30 @@
+{
+  "name": "PyTorch GPU",
+  "dockerComposeFile": "../compose.yaml",
+  "service": "pytorch-gpu",
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
+  "overrideCommand": false,
+  "forwardPorts": [8888],
+  "portsAttributes": {
+    "8888": {
+      "label": "JupyterLab",
+      "onAutoForward": "silent"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter",
+        "ms-azuretools.vscode-docker"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.terminal.activateEnvironment": false
+      }
+    }
+  },
+  "postCreateCommand": "python -c \"import torch; print('PyTorch:', torch.__version__, '| CUDA:', torch.cuda.is_available())\""
+}

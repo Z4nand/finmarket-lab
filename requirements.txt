@@ -1,0 +1,10 @@
+jupyterlab
+ipykernel
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+pyyaml
+python-dotenv
+ta

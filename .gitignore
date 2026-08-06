@@ -1,0 +1,39 @@
+# Byte-compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Virtual environments
+venv/
+.env/
+ENV/
+.env
+.venv/
+
+# Logs
+*.log
+logs/
+
+# IDE
+.vscode/
+.idea/
+
+# Local user/runtime settings
+config/user_settings/settings.json
+
+# Local data and model artifacts
+data/raw/
+data/processed/
+data/economic_calendar/
+data/models/
+
+# Jupyter
+**/*.ipynb_checkpoints
+notebooks/archive/
+
+# OS
+.DS_Store
+Thumbs.db

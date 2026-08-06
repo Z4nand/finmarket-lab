@@ -1,0 +1,21 @@
+services:
+  pytorch-gpu:
+    build:
+      context: .
+    gpus: all
+    environment:
+      PYTHONPATH: /workspace
+    volumes:
+      - .:/workspace
+    ports:
+      - "${JUPYTER_PORT:-8888}:8888"
+    init: true
+    stdin_open: true
+    tty: true
+    command:
+      - jupyter
+      - lab
+      - --ip=0.0.0.0
+      - --port=8888
+      - --no-browser
+      - --allow-root
