@@ -1,5 +1,12 @@
 # PyTorch GPU
 
+market_data - Получение данных с bybit
+orderbook - логика торгового стакана
+storage - хранение данных
+features - расчет признаков
+visualization - отображение данных
+
+
 Шаблон основан на корневых `Dockerfile.pytorch` и `docker-compose.yml`, но запускает
 JupyterLab сразу и использует современное поле Compose `gpus: all`.
 
