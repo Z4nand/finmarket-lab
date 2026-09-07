@@ -2,15 +2,18 @@ from time import sleep
 from pybit.unified_trading import WebSocket
 import os
 import json
+import queue
 
     
 class BybitMarketData:
     def __init__(
             self, 
+            queue,
             symbol="BTCUSDT", 
             depth=50, 
             testnet=False,
             path=None,):
+        self.queue = queue
         self.symbol = symbol
         self.depth = depth
         self.testnet = testnet
@@ -38,8 +41,10 @@ class BybitMarketData:
         except Exception as e:
             print(f'Error: {e}')
             
-    def _handle_message(message: dict)->None:
-        pass
+    def _callback(self,message: dict)->None:
+        if message:
+            self.queue.put(message)
+        
    
     
     def receive_orderbook(self):
@@ -47,9 +52,8 @@ class BybitMarketData:
         self.ws.orderbook_stream(
             depth = self.depth,
             symbol = self.symbol,
-            callback = self._save_message,
+            callback = self._callback,
         )
-
         while True:
             sleep(1)
     
