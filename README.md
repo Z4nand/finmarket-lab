@@ -46,5 +46,5 @@ JupyterLab будет доступен на `http://localhost:8888`. При за
 `docker compose logs pytorch-gpu`. 
 
 ```bash
-pip install -e .        
+pip install -e . --break-system-packages        
 ```

@@ -8,3 +8,6 @@ scikit-learn
 pyyaml
 python-dotenv
 ta
+pybit==5.17
+pytest==9.1.1
+ruff==0.16

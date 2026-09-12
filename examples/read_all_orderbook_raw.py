@@ -1,6 +1,6 @@
-from finmarket_lab.storage.reader import ReaderDataOrderbook
+from finmarket_lab.storage.reader import OrderbookReader
 
-rdo = ReaderDataOrderbook('data/raw/BTCUSDT/orderbook_data.jsonl')
+rdo = OrderbookReader('data/raw/BTCUSDT/orderbook_data.jsonl')
 out = rdo.read_all()
 
 print(out[0])

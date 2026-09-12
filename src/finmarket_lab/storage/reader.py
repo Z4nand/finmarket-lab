@@ -1,7 +1,7 @@
 import pandas as pd
 import json
 
-class ReaderDataOrderbook:
+class OrderbookReader:
     
     def __init__(
             self, 
