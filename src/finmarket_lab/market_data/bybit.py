@@ -4,7 +4,17 @@ import os
 import queue
 
 def parse_orderbook(message):
-    return 0
+    bids = [
+        [float(price), float(volume)]
+        for price, volume in message["data"]["b"]
+    ]
+
+    asks = [
+        [float(price), float(volume)]
+        for price, volume in message["data"]["a"]
+    ]
+
+    return bids, asks
     
 class BybitMarketData:
     def __init__(
