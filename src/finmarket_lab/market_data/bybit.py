@@ -38,18 +38,33 @@ class BybitMarketData:
     
     def _print_message(self, message: dict):
         print(message)
-        
-    def _callback(self,message: dict)->None:
+
+    def _display_queue_put(self, message):
+        try:
+            self.display_queue.put_nowait(message)
+        except queue.Full:
+            # Убираем устаревшее сообщение.
+            try:
+                self.display_queue.get_nowait()
+            except queue.Empty:
+                # Визуализация уже успела его забрать.
+                pass
+
+            self.display_queue.put_nowait(message)
+
+            
+    def callback(self,message: dict)->None:
         if message:
-            self.display_queue.put(message)
-            self.save_queue.put(message)
-   
+            self.save_queue.put_nowait(message)
+            self._display_queue_put(message)
+
+
     def receive_orderbook(self):
        
         self.ws.orderbook_stream(
             depth = self.depth,
             symbol = self.symbol,
-            callback = self._callback,
+            callback = self.callback,
         )
         while True:
             sleep(1)

@@ -21,7 +21,7 @@
         "ms-azuretools.vscode-docker"
       ],
       "settings": {
-        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.defaultInterpreterPath": "/usr/bin/python",
         "python.terminal.activateEnvironment": false
       }
     }
