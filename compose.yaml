@@ -1,17 +1,43 @@
 services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - frontend_node_modules:/app/node_modules
+    depends_on:
+      - api
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command:
+      - uvicorn
+      - finmarket_lab.api.main:app
+      - --host=0.0.0.0
+      - --port=8000
+      - --reload
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/workspace
+    environment:
+      PYTHONPATH: /workspace/src
+
   pytorch-gpu:
     build:
       context: .
+      dockerfile: Dockerfile
     gpus: all
-    environment:
-      PYTHONPATH: /workspace
-    volumes:
-      - .:/workspace
     ports:
       - "${JUPYTER_PORT:-8888}:8888"
-    init: true
-    stdin_open: true
-    tty: true
+    volumes:
+      - .:/workspace
+      - frontend_node_modules:/workspace/frontend/node_modules
     command:
       - jupyter
       - lab
@@ -19,3 +45,6 @@ services:
       - --port=8888
       - --no-browser
       - --allow-root
+
+volumes:
+  frontend_node_modules:
