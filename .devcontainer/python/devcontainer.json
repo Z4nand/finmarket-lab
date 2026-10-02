@@ -1,9 +1,10 @@
 {
-  "name": "PyTorch GPU",
-  "dockerComposeFile": "../compose.yaml",
+  "name": "Python / GPU",
+  "dockerComposeFile": "../../compose.yaml",
   "service": "pytorch-gpu",
+  "runServices": ["pytorch-gpu"],
   "workspaceFolder": "/workspace",
-  "shutdownAction": "stopCompose",
+  "shutdownAction": "none",
   "overrideCommand": false,
   "forwardPorts": [8888],
   "portsAttributes": {

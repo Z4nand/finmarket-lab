@@ -1,0 +1,16 @@
+{
+  "name": "Frontend",
+  "dockerComposeFile": "../../compose.yaml",
+  "service": "frontend",
+  "runServices": ["frontend", "api"],
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "none",
+  "overrideCommand": false,
+  "forwardPorts": [5173],
+  "portsAttributes": {
+    "5173": {
+      "label": "Vite",
+      "onAutoForward": "silent"
+    }
+  }
+}

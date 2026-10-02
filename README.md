@@ -47,7 +47,10 @@ pip install -e . --break-system-packages
 
 ## Работа
 
-- В VS Code открыть папку проекта и выполнить **Dev Containers: Reopen in Container**. При изменении образа использовать **Dev Containers: Rebuild and Reopen in Container**. Установку пакета можно выполнить прямо в терминале VS Code внутри контейнера.
+- В VS Code открыть корень проекта и выполнить **Dev Containers: Reopen in Container**, затем выбрать **Python / GPU** или **Frontend**. При изменении образа использовать **Dev Containers: Rebuild and Reopen in Container**.
+- **Python / GPU** (`.devcontainer/python/devcontainer.json`) открывает весь проект в `/workspace` и запускает сервис `pytorch-gpu`. Установку Python-пакета можно выполнить в терминале этого окна.
+- **Frontend** (`.devcontainer/frontend/devcontainer.json`) открывает весь проект в `/workspace` и запускает сервисы `frontend` и `api`. Vite работает из `/workspace/frontend`; для команд npm в терминале перейти в эту папку: `cd /workspace/frontend`. Страница доступна по адресу http://localhost:5173.
+- Для одновременной работы открыть корень проекта в двух окнах VS Code и выбрать разные конфигурации. При закрытии окон контейнеры продолжают работать (`shutdownAction: none`). Остановить их из терминала Windows в корне проекта командой `docker compose stop`.
 - Для Python-файлов выбрать интерпретатор `/usr/bin/python`, для ноутбуков — ядро этого окружения.
 - `notebooks/` — исследовательские ноутбуки; `examples/` — небольшие запускаемые примеры; `src/finmarket_lab/` — код проекта; `data/` — данные.
 - Корень проекта подключён к `/workspace`: изменения файлов в контейнере сохраняются на компьютере.
